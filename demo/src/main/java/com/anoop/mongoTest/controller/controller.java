@@ -1,28 +1,25 @@
 package com.anoop.mongoTest.controller;
 
+import java.util.List;
 
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anoop.mongoTest.model.institution;
 import com.anoop.mongoTest.repo.repository;
 
-import java.awt.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class controller {
-	private final repository resp;
-	
-	public controller(repository r) {
-		this.resp=r;
-	}
+	@Autowired
+	private repository resp;
 	
 	@RequestMapping(value="/institution")
-	public String getInsti() {
-		return resp.findAll().toString();
+	public List<institution> getInsti() {
+		return resp.findAll();
 		
 	}
 	
