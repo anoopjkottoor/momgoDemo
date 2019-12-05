@@ -13,22 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
+@RequestMapping(value = "/test")
 public class controller {
 	@Autowired
 	private repository resp;
 	
-	@RequestMapping(value="/institution")
-	public List<institution> getInsti() {
-		return resp.findAll();
-		
+	@RequestMapping(value="/ping")
+	public String ping() {
+		return "Welcome";
 	}
-	
-	@RequestMapping(value="/institutions",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/institution", method = RequestMethod.GET)
+	public List<institution> getInsti() {
+		System.out.println("Hello");
+		return resp.findAll();
+
+	}
+
+	@RequestMapping(value = "/institutions", method = RequestMethod.POST)
 	public void postInsti(@RequestBody institution insti) {
+		System.out.println("HIII");
 		resp.save(insti);
 	}
-	
-	
-	
 
 }
